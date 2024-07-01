@@ -6,21 +6,21 @@ import { ObjectType, Field, ID } from "type-graphql";
 export class Country {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Field()
   @Column()
-  code: string;
+  code!: string;
 
   @Field()
   @Column()
-  name: string;
+  name!: string;
 
   @Field()
   @Column()
-  emoji: string;
+  emoji!: string;
 
   @Field()
   @Column()
-  continent: string;
+  continent!: string;
 }
