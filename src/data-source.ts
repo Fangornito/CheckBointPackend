@@ -5,16 +5,17 @@ import { Country } from "./entity/Country";
 export const AppDataSource = new DataSource({
   type: "sqlite",
   database: "database.sqlite",
-  synchronize: true,
-  logging: false,
+  synchronize: false,
+  logging: ["query", "error"],
   entities: [Country],
-  migrations: [],
+  migrations: ["src/migration/**/*.ts"],
   subscribers: [],
 });
 
 AppDataSource.initialize()
-  .then(() => {
+  .then(async () => {
     console.log("Data Source has been initialized!");
+    await AppDataSource.runMigrations();
   })
   .catch((err) => {
     console.error("Error during Data Source initialization:", err);
